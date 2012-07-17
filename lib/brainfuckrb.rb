@@ -6,7 +6,6 @@ module Brainfuckrb
   class Brainfuck
     def initialize(program)
       @program = program
-      @out = ''
       reset
     end
 
@@ -20,8 +19,9 @@ module Brainfuckrb
     def run(stop = nil)
       _run(stop)
       result = @mem[@p]
+      r = @out
       reset
-      return @out
+      return r
     end
 
     def _run(stop = nil)
