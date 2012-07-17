@@ -6,6 +6,7 @@ module Brainfuckrb
   class Brainfuck
     def initialize(program)
       @program = program
+      @out = ''
       reset
     end
 
@@ -13,13 +14,14 @@ module Brainfuckrb
       @mem = [0] * 65535
       @p = 0
       @pc = 0
+      @out = ''
     end
 
     def run(stop = nil)
       _run(stop)
       result = @mem[@p]
       reset
-      return result
+      return @out
     end
 
     def _run(stop = nil)
@@ -31,7 +33,7 @@ module Brainfuckrb
           when "<" then @p -= 1
           when "+" then @mem[@p] += 1
           when "-" then @mem[@p] -= 1
-          when "." then STDOUT.putc @mem[@p].chr
+          when "." then @out << @mem[@p].chr
           when "," then @mem[@p] = STDIN.readchar.ord
           when "["
             depth = 1
