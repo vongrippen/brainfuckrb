@@ -17,11 +17,10 @@ module Brainfuckrb
     end
 
     def run(stop = nil)
+      reset
       _run(stop)
       result = @mem[@p]
-      r = @out
-      reset
-      return r
+      @out
     end
 
     def _run(stop = nil)
